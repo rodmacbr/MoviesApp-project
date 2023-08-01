@@ -12,7 +12,7 @@ import SortIcon from '@mui/icons-material/Sort';
 
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { getMovieGenres } from "../../api/tmdb-api";
+import { getTvShowGenres } from "../../api/tmdb-api";
 
 const styles = {
   root: {
@@ -27,8 +27,8 @@ const styles = {
   },
 };
 
-export default function FilterMoviesCard(props) {
-  const { data, error, isLoading, isError } = useQuery("genres", getMovieGenres);
+export default function FilterTvShowsCard(props) {
+  const { data, error, isLoading, isError } = useQuery("genres", getTvShowGenres);
 
   if (isLoading) {
     return <Spinner />;
@@ -48,30 +48,29 @@ export default function FilterMoviesCard(props) {
   };
 
   const handleTextChange = (e, props) => {
-    handleUserImput(e, "title", e.target.value);
+    handleUserImput(e, "title", e.target.value);  //? "name"??
   };
 
   const handleGenreChange = (e) => {
     handleUserImput(e, "genre", e.target.value);
   };
-
   return (
     <>
     <Card sx={styles.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
           <FilterAltIcon fontSize="large" />
-          Filter the movies.
+          Filter the tv shows.
         </Typography>
         <TextField
-          sx={styles.formControl}
-          id="filled-search"
-          label="Search field"
-          type="search"
-          value={props.titleFilter}
-          variant="filled"
-          onChange={handleTextChange}
-        />
+            sx={styles.formControl}
+            id="filled-search"
+            label="Search field"
+            type="search"
+            value={props.titleFilter}
+            variant="filled"
+            onChange={handleTextChange}
+            />
         <FormControl sx={styles.formControl}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
@@ -79,7 +78,7 @@ export default function FilterMoviesCard(props) {
             id="genre-select"
             value={props.genreFilter}
             onChange={handleGenreChange}
-          >
+            >
             {genres.map((genre) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
@@ -95,10 +94,12 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            Sort the tv shows.
           </Typography>
         </CardContent>
       </Card>
       </>
   );
 }
+
+

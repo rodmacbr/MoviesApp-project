@@ -1,10 +1,12 @@
+
 import React, { useState } from "react";
-import Header from "../headerMovieList";
-import FilterCard from "../filterMoviesCard";
+import Header from "../components/headerMovieList";
+import FilterCard from "../components/filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import MovieList from "../movieList";
+import MovieList from "../components/movieList";
+import TvShowList from "../components/tvShowList";
 
 const styles = {
   root: {
@@ -18,7 +20,7 @@ const styles = {
   },
 };
 
-function MovieListPageTemplate({ movies, title, action }) {
+function ListPage({ movies, tvShows, title, movieActions, tvShowActions }) {
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -45,10 +47,16 @@ function MovieListPageTemplate({ movies, title, action }) {
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <MovieList
-            action={action}
+          {(Array.isArray(movies) && movies.length > 0) && (
+            <MovieList
+            action={movieActions}
             movies={displayedMovies}
-          />
+          />)}
+          {(Array.isArray(tvShows) && tvShows.length > 0) && (
+            <TvShowList
+            action={tvShowActions}
+            tvShows={tvShows}
+          />)}
         </Grid>
       </Grid>
       <Fab
@@ -73,5 +81,5 @@ function MovieListPageTemplate({ movies, title, action }) {
     </>  
   );
 }
-export default MovieListPageTemplate;
+export default ListPage;
 

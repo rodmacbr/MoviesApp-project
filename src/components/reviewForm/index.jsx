@@ -7,12 +7,12 @@ import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useForm, Controller } from "react-hook-form";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { ReviewContext } from "../../contexts/ReviewContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import ratings from "./ratingCategories";
 
-const ReviewForm = ({ movie }) => {
+const ReviewForm = ({ movie, tvShow }) => {
   const defaultValues = {
     author: "",
     review: "",
@@ -26,7 +26,7 @@ const ReviewForm = ({ movie }) => {
     reset,
   } = useForm(defaultValues);
   const navigate = useNavigate();
-  const context = useContext(MoviesContext);
+  const context = useContext(ReviewContext);
   const [rating, setRating] = useState(3);
   const [open, setOpen] = useState(false);
 
@@ -36,14 +36,18 @@ const ReviewForm = ({ movie }) => {
 
   const handleSnackClose = (event) => {
     setOpen(false);
-    navigate("/movies/favourites");
+    navigate("/favourites");
   };
 
   const onSubmit = (review) => {
-    review.movieId = movie.id;
+    console.log('review', review);
     review.rating = rating;
-    // console.log(review);
-    context.addReview(movie, review);
+    if (movie != null) {
+      context.addReview({movie, review});
+    } else {
+      context.addReview({tvShow, review});
+    }
+    
     setOpen(true);
   };
 

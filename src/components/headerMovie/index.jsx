@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const styles = {
   root: {
@@ -14,6 +15,10 @@ const styles = {
     flexWrap: "wrap",
     padding: 1.5,
   },
+  heartIcon: {
+    color: "red",
+    marginRight: "8px",
+  },
 };
 
 const MovieHeader = (props) => {
@@ -21,11 +26,9 @@ const MovieHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Get favorites from localStorage
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const movieFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    // Check if current movie is a favorite
-    const isCurrentMovieFavorite = favorites.some(
+    const isCurrentMovieFavorite = movieFavorites.some(
       (favMovie) => favMovie.id === movie.id
     );
 
