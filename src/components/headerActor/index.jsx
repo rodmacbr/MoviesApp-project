@@ -21,19 +21,19 @@ const styles = {
   },
 };
 
-const MovieHeader = (props) => {
+const ActorHeader = (props) => {
   const person = props.person;
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const movieFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const actorFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    const isCurrentMovieFavorite = movieFavorites.some(
-      (favMovie) => favMovie.id === movie.id
+    const isCurrentActorFavorite = actorFavorites.some(
+      (favActor) => favActor.id === actor.id
     );
 
-    setIsFavorite(isCurrentMovieFavorite);
-  }, [movie.id]);
+    setIsFavorite(isCurrentActorFavorite);
+  }, [actor.id]);
 
   return (
     <Paper component="div" sx={styles.root}>
@@ -42,15 +42,15 @@ const MovieHeader = (props) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {movie.title}{"   "}
-        <a href={movie.homepage}>
+        {person.title}{"   "}
+        <a href={person.homepage}>
           <HomeIcon color="primary" fontSize="large" />
         </a>
         <br />
-        <span>{`${movie.tagline}`} </span>
+        <span>{`${person.tagline}`} </span>
       </Typography>
 
-      {/* Render the red heart icon if the movie is a favorite */}
+      {/* Render the red heart icon if the actor is a favorite */}
       {isFavorite && (
         <IconButton aria-label="favorite">
           <FavoriteIcon color="error" fontSize="large" />
@@ -64,4 +64,4 @@ const MovieHeader = (props) => {
   );
 };
 
-export default MovieHeader;
+export default ActorHeader;

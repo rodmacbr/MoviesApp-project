@@ -178,17 +178,48 @@ export const getTvShow = (args) => {
     });
   };
 
-
-  export const getOnTheAirTvShows = () => {
+  export const getPeople = () => {
     return fetch(
-    `https://api.themoviedb.org/3/tv/on_the_air?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
-      ).then((response) => {
+        `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    ).then((response) => {
         if (!response.ok) {
-          throw new Error(response.json().message);
+            throw new Error(response.json().message);
         }
         return response.json();
-      })
-      .catch((error) => {
-        throw error
-    });
-  };
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const getPeopleImages = ({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
+    return fetch(
+        `https://api.themoviedb.org/3/person/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const getSimilarMovie = (id) => {
+    return fetch(
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.json().message);
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error
+        });
+};
