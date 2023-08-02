@@ -27,7 +27,7 @@ const HomePage = (props) => {
   }, [goToPage]);
 
   const prevPage = useCallback(() => {
-    const prevPage = parseInt(pageNumber, 10) - 1;
+    let prevPage = parseInt(pageNumber, 10) - 1;
     if (prevPage < 1) prevPage = 1;
     goToPage(prevPage)
   }, [goToPage]);
