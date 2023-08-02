@@ -19,9 +19,9 @@ const styles = {
   },
 };
 
-const TemplateActorPage = ({ actor, children }) => {
+const TemplateActorPage = ({ person, children }) => {
   const { data , error, isLoading, isError } = useQuery(
-    ["images", { id: actor.id }],
+    ["images", { id: person.id }],
     getPeopleImages
   );
 

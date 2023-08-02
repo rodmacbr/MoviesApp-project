@@ -25,6 +25,7 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   const genreId = Number(genreFilter);
 
+  /*
   let displayedMovies = movies
     .filter((m) => {
       return (m.title || m.name).toLowerCase().search(titleFilter.toLowerCase()) !== -1;
@@ -32,6 +33,18 @@ function MovieListPageTemplate({ movies, title, action }) {
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
+    */
+
+  let displayedMovies = [];
+    if (movies) {
+  displayedMovies = movies
+    .filter((m) => {
+      return (m.title || m.name).toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    });
+}
 
   const handleChange = (type, value) => {
     if (type === "title") setTitleFilter(value);

@@ -18,22 +18,20 @@ const styles = {
   },
 };
 
-function ActorListPageTemplate({ persons, title, action }) {
-  const [titleFilter, setTitleFilter] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
+function ActorListPageTemplate({ people }) {
+ // const [titleFilter, setTitleFilter] = useState("");
+ // const [drawerOpen, setDrawerOpen] = useState(false);
 
 
   return (
    <>
       <Grid container sx={styles.root}>
-        <Grid item xs={12}>
-          <Header title={title} />
-        </Grid>
-        <Grid item container spacing={5}>
-          <ActorList
-            action={action}
-            persons={displayedPersons}
-          />
+          <Grid item container spacing={1}>
+            {people.map((person) => (
+              <Grid key={person.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+                <Person key={person.id} person={person} />
+          </Grid>
+          ))}
         </Grid>
       </Grid>
       <Fab
