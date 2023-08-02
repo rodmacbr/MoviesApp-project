@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -22,7 +22,7 @@ const styles = {
 };
 
 const MovieHeader = (props) => {
-  const person = props.person;
+  const movie = props.movie;
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
