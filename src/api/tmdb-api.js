@@ -12,9 +12,9 @@ export const getMovies = ({ pageNumber = 1}) => {
   });
 };
 
-export const getTvShows = () => {
+export const getTvShows = ({ pageNumber = 1}) => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNumber}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -178,34 +178,33 @@ export const getTvShow = (args) => {
     });
   };
 
-  export const getPeople = () => {
+  export const getPeople = ({ pageNumber = 1}) => {
     return fetch(
-        `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${pageNumber}`
     ).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.json().message);
-        }
-        return response.json();
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
     })
-        .catch((error) => {
-            throw error
-        });
-};
-
-export const getPeopleImages = ({ queryKey }) => {
-    const [, idPart] = queryKey;
+    .catch((error) => {
+       throw error
+    });
+  };
+  
+  export const getPerson = (args) => {
+    const [, idPart] = args.queryKey;
     const { id } = idPart;
     return fetch(
-        `https://api.themoviedb.org/3/person/${id}/?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
     ).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.json().message);
-        }
-        return response.json();
-
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
     })
-        .catch((error) => {
-            throw error
-        });
-};
-
+    .catch((error) => {
+       throw error
+    });
+  };
+  

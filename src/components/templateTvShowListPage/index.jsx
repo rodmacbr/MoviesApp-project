@@ -24,7 +24,7 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const genreId = Number(genreFilter);
-
+/*
   let displayedTvShows = tvShows
     .filter((m) => {
       return m.title?.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
@@ -32,6 +32,18 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
+    */
+
+    let displayedTvShows = [];
+    if (tvShows) {
+      displayedTvShows = tvShows
+    .filter((m) => {
+      return m.title?.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    });
+  }
 
   const handleChange = (type, value) => {
     if (type === "title") setTitleFilter(value);
@@ -72,5 +84,4 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
   );
 }
 export default TvShowListPageTemplate;
-
 
