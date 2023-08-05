@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
+import TrendingMoviePage from './pages/trendingPage';
 import TvShowPage from "./pages/tvShowPage";
 import MovieDetailPage from "./pages/movieDetailsPage";
 import TvShowDetailPage from "./pages/tvShowDetailsPage";
@@ -20,6 +21,7 @@ import TvShowsContextProvider from "./contexts/tvShowsContext";
 import ReviewContextProvider from "./contexts/ReviewContext";
 import PeoplePage from "./pages/peoplePage";
 import ActorPage from "./pages/actorDetailsPage"
+
 
 
 
@@ -52,11 +54,12 @@ const App = () => {
                 <Route path="/movies/:id" element={<MoviePage />} />
                 <Route path="/tvShows" element={<TvShowPage />} />
                 <Route path="/people" element={<PeoplePage />} />
-            <Route path="/people/:id" element={<ActorPage />} />
+                <Route path="/people/:id" element={<ActorPage />} />
                 <Route path="/" element={<HomePage />} />
                 <Route path="*" element={<Navigate to="/" />} />
                 <Route path="/movies/:id" element={<MovieDetailPage />} />
                 <Route path="/tvShows/:id" element={<TvShowDetailPage />} />
+                <Route path="/trendingMovies" element={<TrendingMoviePage />} />
               </Routes>
             </ReviewContextProvider>
           </TvShowsContextProvider>

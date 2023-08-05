@@ -32,8 +32,8 @@ const SiteHeader = () => {
     { label: "TV Shows", path: "/tvShows" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/favourites" },
-    { label: "Famous Actors and Actresses", path: "/people" },
-    { label: "Option 4", path: "/" },
+    { label: "Actors / Actresses", path: "/people" },
+    { label: "Trending", path: "/trendingMovies" },
   ];
 
   const handleMenuSelect = (pageURL) => {
