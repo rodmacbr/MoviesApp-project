@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Header from "../components/headerMovieList";
 import FilterCard from "../components/filterMoviesCard";
